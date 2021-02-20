@@ -4,9 +4,10 @@ import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 import "../cart-icon/cart-icon.styles.scss";
 import { toggleCartHidden } from "../../redux/cart/cart-actions";
 const CartIcon = ({ toggleCartHidden }) => {
+  console.log("cartIcon component is called");
   const cartItems = useSelector((state) => state.cart.cartItems);
 
-  const itemCount = cartItems.length;
+  const itemCount = cartItems.reduce((accum, item) => accum + item.quantity, 0);
 
   return (
     <div className="cart-icon" onClick={toggleCartHidden}>
