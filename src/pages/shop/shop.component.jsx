@@ -1,26 +1,47 @@
-import React, { Component } from "react";
-import SHOP_DATA from "./shop.data";
-import CollectionPreview from "../../components/preview-collection/preview-collection.component";
-export class ShopPage extends Component {
-  constructor(props) {
-    super(props);
+import React from "react";
+import { Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import CollectionOverview from "../../components/collection-overview/collection-overview.component";
 
-    this.state = {
-      collections: SHOP_DATA,
-    };
-  }
+import CollectionPage from "../collection/collection.component";
 
-  render() {
-    return (
-      <div className="">
-        {this.state.collections.map(({ id, ...otherCollectionProps }) => (
-          <CollectionPreview key={id} {...otherCollectionProps}>
-            {otherCollectionProps.title}
-          </CollectionPreview>
-        ))}
-      </div>
-    );
-  }
-}
-
+const ShopPage = ({ match }) => {
+  return (
+    <div className="shop-page">
+      <Route
+        exact
+        path={`${match.path}`}
+        component={CollectionOverview}
+      ></Route>
+      <Route
+        path={`${match.path}/:collectionId`}
+        component={CollectionPage}
+      ></Route>
+    </div>
+  );
+};
 export default ShopPage;
+
+// export class ShopPage extends Component {
+//   constructor(props) {
+//     super(props);
+
+//     this.state = {
+//       collections: SHOP_DATA,
+//     };
+//   }
+
+//   render() {
+//     return (
+//       <div className="">
+//         {this.state.collections.map(({ id, ...otherCollectionProps }) => (
+//           <CollectionPreview key={id} {...otherCollectionProps}>
+//             {otherCollectionProps.title}
+//           </CollectionPreview>
+//         ))}
+//       </div>
+//     );
+//   }
+// }
+
+// export default ShopPage;

@@ -1,5 +1,5 @@
 import React from "react";
-import "../colelction-item/collection-item.styles.scss";
+import "./collection-item.styles.scss";
 import CustomButton from "../custom-button/custom-button";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../redux/cart/cart-actions";
